@@ -1,14 +1,14 @@
 import React, { ChangeEvent, useState } from 'react'
-import { act } from 'react-dom/test-utils';
-import { Button, Card, Form, Segment } from 'semantic-ui-react';
+import { Button, Form, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/models/activity';
 
 interface Props{
     activity: Activity | undefined;
     closeForm: () => void;
+    createOrEdit: (activity: Activity) => void;
 }
 
-export default function ActivityForm({activity: selectedActivity, closeForm}: Props){
+export default function ActivityForm({activity: selectedActivity, closeForm, createOrEdit}: Props){
 
     const initialState = selectedActivity ?? {
         id: '',
@@ -23,7 +23,7 @@ export default function ActivityForm({activity: selectedActivity, closeForm}: Pr
     const[activity, setActivity] = useState(initialState);
 
     function handleSubmit(){
-        console.log(activity);
+        createOrEdit(activity);
     }
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
