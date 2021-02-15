@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 namespace API.Controllers
-{//fake comment
+{
 
     public class ActivitiesController : BaseApiController
     {
@@ -31,9 +31,9 @@ namespace API.Controllers
         } 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditActiviy(Guid Id, Activity activity)
+        public async Task<IActionResult> EditActiviy(Guid id, Activity activity)
         {
-            activity.Id = Id;
+            activity.Id = id;
             return Ok(await Mediator.Send(new Edit.Command{Activity = activity}));
         }
 
