@@ -18,11 +18,10 @@ export default class UserStore{
     login = async (creds: UserFormValues) => {
         try{
             const user = await agent.Account.login(creds);
+            
             store.commonStore.setToken(user.token);
             runInAction(() => {
                 this.user = user;
-                console.log(this.user)
-                console.log(user);
                 history.push('/activities');
                 store.modalStore.closeModal();
             })
